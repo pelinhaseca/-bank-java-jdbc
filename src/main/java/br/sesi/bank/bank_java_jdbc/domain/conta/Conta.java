@@ -3,34 +3,69 @@ package br.sesi.bank.bank_java_jdbc.domain.conta;
 import br.sesi.bank.bank_java_jdbc.domain.cliente.Cliente;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Conta {
+
     private Integer numero;
-    private BigDecimal valor;
+    private BigDecimal saldo;
     private Cliente titular;
 
-    public Conta(Integer numero , BigDecimal saldo,Cliente titular) {
+    public Conta(Integer numero, BigDecimal saldo, Cliente titular) {
+        this.numero = numero;
+        this.titular = titular;
+        this.saldo = saldo;
     }
-    public boolean possuiSaldo(){
-        return true;
+
+    public boolean possuiSaldo() {
+
+        return this.saldo.compareTo(BigDecimal.ZERO) != 0;
     }
-    public void sacar(BigDecimal valor){
+
+    public void sacar(BigDecimal valor) {
+
+        this.saldo = this.saldo.subtract(valor);
     }
-    public void depositar(BigDecimal valor){
+
+    public void depositar(BigDecimal valor) {
+
+        this.saldo = this.saldo.add(valor);
     }
-    public Integer getNumero(){
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conta conta = (Conta) o;
+        return numero.equals(conta.numero);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero);
+    }
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "numero='" + numero + '\'' +
+                ", saldo=" + saldo +
+                ", titular=" + titular +
+                '}';
+    }
+
+    public Integer getNumero() {
+
         return numero;
     }
-    public BigDecimal getSaldo(){
-        return valor;
+
+    public BigDecimal getSaldo() {
+
+        return saldo;
     }
-    public Cliente getTitular(){
+
+    public Cliente getTitular() {
+
         return titular;
-    }
-   public boolean equais(Object o){
-        return true;
-   }
-    public int hashCode() {
-        return 0;
     }
 }

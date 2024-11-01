@@ -10,11 +10,24 @@ public class Conta {
     private Integer numero;
     private BigDecimal saldo;
     private Cliente titular;
-
-    public Conta(Integer numero, BigDecimal saldo, Cliente titular) {
+    private boolean ativo;
+    public Conta(Integer numero, BigDecimal saldo, Cliente titular, boolean ativo) {
         this.numero = numero;
         this.titular = titular;
         this.saldo = saldo;
+        this.ativo = ativo;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setTitular(Cliente titular) {
+        this.titular = titular;
     }
 
     public boolean possuiSaldo() {
@@ -30,6 +43,14 @@ public class Conta {
     public void depositar(BigDecimal valor) {
 
         this.saldo = this.saldo.add(valor);
+    }
+
+    public boolean isAtivo(){
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override
@@ -60,8 +81,7 @@ public class Conta {
     }
 
     public BigDecimal getSaldo() {
-
-        return saldo;
+        return this.saldo;
     }
 
     public Cliente getTitular() {

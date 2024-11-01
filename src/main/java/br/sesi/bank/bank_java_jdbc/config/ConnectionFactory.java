@@ -16,8 +16,8 @@ public class ConnectionFactory {
 
     private HikariDataSource createDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/bank_sesi");
-        config.setUsername("root");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/banco-sesi");
+        config.setUsername("postgres");
         config.setPassword("root");
         config.setMaximumPoolSize(10);
 
